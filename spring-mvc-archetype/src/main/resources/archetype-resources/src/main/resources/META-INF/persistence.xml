@@ -1,0 +1,18 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="${version}">
+
+   <persistence-unit name="helloPU" transaction-type="JTA">
+       <!--
+           Using the example datasource set up by JBoss AS 7
+           For your application, set up a managed datasource and
+           use that instead
+       -->
+       <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+
+       <properties>
+            <property name="hibernate.show_sql" value="true"/>
+       </properties>
+   </persistence-unit>
+</persistence>
