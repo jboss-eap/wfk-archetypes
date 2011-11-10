@@ -8,10 +8,10 @@
     <title>Hello</title>
 </head>
 <body>
-<form method="post" action="say-hello">Enter username: <input
-        type="text" name="username" value="<c:out value="${username}"/>">
-    <c:out value="${message}" />
-    <p><input type="submit" value="Submit">
+<form method="post" action="say-hello">
+    Enter username: <input type="text" id="username" name="username" value="<c:out value="${username}"/>">
+    <div id="message"><c:out value="${message}" /></div>
+    <p><input type="submit" id="submit" value="Submit"></p>
 </form>
 
 </body>
