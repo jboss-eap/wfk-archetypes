@@ -1,385 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>${groupId}</groupId>
-	<artifactId>${artifactId}</artifactId>
-	<packaging>war</packaging>
-	<version>${version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <packaging>war</packaging>
+    <version>${version}</version>
 
-	<name>Getting Started with Spring on JBoss</name>
+    <name>Getting Started with Spring on JBoss</name>
 
-	<properties>
-		#if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
-		"yes" )
-		<!-- Spring dependencies are managed by WFK -->
-		<!-- Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=751991 -->
-		<version.aopalliance>1.0</version.aopalliance>
-		#else
-		<!-- Spring version -->
-		<version.spring>3.0.6.RELEASE</version.spring>
+    <properties>
+        #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
+        "yes" )
+        #else
+        <!-- Spring version -->
+        <version.spring>3.0.6.RELEASE</version.spring>
 
-		<!-- Spring Third Party dependencies -->
-		<version.aopalliance>1.0</version.aopalliance>
-		#end
+        <!-- Spring Third Party dependencies -->
+        <version.aopalliance>1.0</version.aopalliance>
+        #end
 
-		<!-- Third Party dependencies -->
-		<version.standard.taglibs>1.1.2</version.standard.taglibs>
-		<version.commons.logging>1.1.1</version.commons.logging>
+        <!-- Third Party dependencies -->
+        <version.standard.taglibs>1.1.2</version.standard.taglibs>
+        <version.commons.logging>1.1.1</version.commons.logging>
 
-		<!-- JBoss AS plugin for deployment -->
-		<version.jboss.as.maven.plugin>7.0.2.Final</version.jboss.as.maven.plugin>
+        <!-- JBoss AS plugin for deployment -->
+        <version.jboss.as.maven.plugin>7.0.2.Final</version.jboss.as.maven.plugin>
 
-		<!-- Test dependency versions -->
-		<version.arquillian.core>1.0.0.CR5</version.arquillian.core>
-		<version.arquillian.drone>1.0.0.CR2</version.arquillian.drone>
-		<version.arquillian.ajocado>1.0.0.CR2</version.arquillian.ajocado>
-		<version.arquillian.container>7.0.2.Final</version.arquillian.container>
-	</properties>
+        <!-- Test dependency versions -->
+        <version.arquillian.core>1.0.0.CR5</version.arquillian.core>
+        <version.arquillian.drone>1.0.0.CR2</version.arquillian.drone>
+        <version.arquillian.ajocado>1.0.0.CR2</version.arquillian.ajocado>
+        <version.arquillian.container>7.0.2.Final</version.arquillian.container>
+    </properties>
 
-	<dependencyManagement>
-		<!-- Arquillian Test dependencies -->
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>${version.arquillian.core}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.extension</groupId>
-				<artifactId>arquillian-drone-bom</artifactId>
-				<version>${version.arquillian.drone}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.ajocado</groupId>
-				<artifactId>arquillian-ajocado-junit</artifactId>
-				<version>${version.arquillian.ajocado}</version>
-				<type>pom</type>
-			</dependency>
+    <dependencyManagement>
+        <!-- Arquillian Test dependencies -->
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${version.arquillian.core}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-bom</artifactId>
+                <version>${version.arquillian.drone}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.ajocado</groupId>
+                <artifactId>arquillian-ajocado-junit</artifactId>
+                <version>${version.arquillian.ajocado}</version>
+                <type>pom</type>
+            </dependency>
 
-			#if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
-			"yes" )
-			<!-- Here we get Spring dependencies certified in WFK -->
-			<dependency>
-				<groupId>com.redhat.jboss.wfk.boms</groupId>
-				<artifactId>spring-3.0-bom</artifactId>
-				<version>2.0.0-redhat-1</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- Define the versions of JBoss EAP components we want to use -->
-			<dependency>
-				<groupId>org.jboss.component.management</groupId>
-				<artifactId>jboss-dependency-management-eap</artifactId>
-				<version>6.0.0-redhat-0</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			
-			<!-- Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=751991 -->
-			<dependency>
-				<groupId>aopalliance</groupId>
-				<artifactId>aopalliance</artifactId>
-				<version>${version.aopalliance}</version>
-			</dependency>
+            #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
+            "yes" )
+            <!-- Here we get Spring dependencies certified in WFK -->
+            <dependency>
+                <groupId>com.redhat.jboss.wfk.boms</groupId>
+                <artifactId>spring-3.0-bom</artifactId>
+                <version>2.0.0-redhat-1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Define the versions of JBoss EAP components we want to use -->
+            <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
+                dependencies from org.jboss.spec will have their version defined by this
+                BOM -->
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+                of artifacts. We use this here so that we always get the correct versions
+                of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this
+                as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version
+                2.0.0.Beta1 which is the latest release of the stack. You can actually use
+                this stack with any version of JBoss AS that implements Java EE 6, not just
+                JBoss AS 7! -->
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-web-6.0</artifactId>
+                <version>3.0.0.Beta1-redhat-1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            #else
+            <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
+                dependencies from org.jboss.spec will have their version defined by this
+                BOM -->
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+                of artifacts. We use this here so that we always get the correct versions
+                of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this
+                as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version
+                2.0.0.Beta1 which is the latest release of the stack. You can actually use
+                this stack with any version of JBoss AS that implements Java EE 6, not just
+                JBoss AS 7! -->
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-web-6.0</artifactId>
+                <version>3.0.0.Beta1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<!-- Workaround for JBPAPP-7450 -->
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-common</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+            <!-- Spring dependencies -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-asm</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-container-embedded</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+            <!-- Third Party dependencies -->
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${version.aopalliance}</version>
+            </dependency>
+            #end
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>${version.standard.taglibs}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${version.commons.logging}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-container-managed</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+    <dependencies>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-container-managed-clustering</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+        <!-- Import the JPA API using the provided scope It is included in JBoss
+            AS 7 / EAP 6 -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-container-managed-domain</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+        <!-- Import Spring dependencies, these are either from community or versions
+            certified in WFK2 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-asm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-container-remote</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+        <!-- Other community dependencies -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-processor-jsfunit</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+        <!-- Testing artifacts -->
+        <!-- Arquillian -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-protocol-jmx</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
+        <!-- Arquillian Drone using Arquillian Ajocado -->
+        <!-- Contains JUnit dependency as well -->
+        <dependency>
+            <groupId>org.jboss.arquillian.ajocado</groupId>
+            <artifactId>arquillian-ajocado-junit</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
 
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-arquillian-testenricher-msc</artifactId>
-				<version>${version.arquillian.container}</version>
-			</dependency>
-			<!-- End of the workaround for JBPAPP-7450 -->
-			#else
-			<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
-				dependencies from org.jboss.spec will have their version defined by this 
-				BOM -->
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
-				as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version 
-				2.0.0.Beta1 which is the latest release of the stack. You can actually use 
-				this stack with any version of JBoss AS that implements Java EE 6, not just 
-				JBoss AS 7! -->
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-web-6.0</artifactId>
-				<version>2.0.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+    </dependencies>
 
-			<!-- Spring dependencies -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-asm</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-expression</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-beans</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-orm</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${version.spring}</version>
-			</dependency>
+    <build>
+        <finalName>getting-started</finalName>
+        <plugins>
+            <!-- Force Java 6 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <!-- Deployent on AS from console -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${version.jboss.as.maven.plugin}</version>
+            </plugin>
+            <!-- Surefire plugin before 2.9 version is buggy -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+        </plugins>
+    </build>
 
-			<!-- Third Party dependencies -->
-			<dependency>
-				<groupId>aopalliance</groupId>
-				<artifactId>aopalliance</artifactId>
-				<version>${version.aopalliance}</version>
-			</dependency>
-			#end
-			<dependency>
-				<groupId>taglibs</groupId>
-				<artifactId>standard</artifactId>
-				<version>${version.standard.taglibs}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>${version.commons.logging}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-
-		<!-- Import the JPA API using the provided scope It is included in JBoss 
-			AS 7 / EAP 6 -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import Spring dependencies, these are either from community or versions 
-			certified in WFK2 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-asm</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-
-		<!-- Other community dependencies -->
-		<dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</dependency>
-
-		<!-- Testing artifacts -->
-		<!-- Arquillian -->
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Arquillian Drone using Arquillian Ajocado -->
-		<!-- Contains JUnit dependency as well -->
-		<dependency>
-			<groupId>org.jboss.arquillian.ajocado</groupId>
-			<artifactId>arquillian-ajocado-junit</artifactId>
-			<scope>test</scope>
-			<type>pom</type>
-		</dependency>
-
-	</dependencies>
-
-	<build>
-		<finalName>getting-started</finalName>
-		<plugins>
-			<!-- Force Java 6 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<!-- Deployent on AS from console -->
-			<plugin>
-				<groupId>org.jboss.as.plugins</groupId>
-				<artifactId>jboss-as-maven-plugin</artifactId>
-				<version>${version.jboss.as.maven.plugin}</version>
-			</plugin>
-			<!-- Surefire plugin before 2.9 version is buggy -->
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.9</version>
-			</plugin>
-		</plugins>
-	</build>
-
-	<profiles>
-		<profile>
-			<!-- An optional Arquillian testing profile that executes tests in a remote 
-				JBoss AS instance -->
-			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
-			<id>arq-jbossas-remote</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.jboss.as</groupId>
-					<artifactId>jboss-as-arquillian-container-remote</artifactId>
-					<version>${version.arquillian.container}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <!-- An optional Arquillian testing profile that executes tests in a remote
+                JBoss AS instance -->
+            <!-- Run with: mvn clean test -Parq-jbossas-remote -->
+            <id>arq-jbossas-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <version>${version.arquillian.container}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>        
+    </profiles>
 </project>
