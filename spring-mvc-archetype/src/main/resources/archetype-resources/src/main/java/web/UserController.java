@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.mvc;
+package ${package}.web;
 
 import ${package}.domain.User;
 import ${package}.domain.UserDao;

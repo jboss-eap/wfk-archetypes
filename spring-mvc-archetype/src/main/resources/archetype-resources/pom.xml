@@ -31,37 +31,11 @@
         <!-- JBoss AS plugin for deployment -->
         <version.jboss.as.maven.plugin>7.0.2.Final</version.jboss.as.maven.plugin>
 
-        <!-- Test dependency versions -->
-        <version.arquillian.core>1.0.0.CR5</version.arquillian.core>
-        <version.arquillian.drone>1.0.0.CR2</version.arquillian.drone>
-        <version.arquillian.ajocado>1.0.0.CR2</version.arquillian.ajocado>
-        <version.arquillian.container>7.0.2.Final</version.arquillian.container>
     </properties>
 
     <dependencyManagement>
-        <!-- Arquillian Test dependencies -->
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian.core}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-bom</artifactId>
-                <version>${version.arquillian.drone}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.ajocado</groupId>
-                <artifactId>arquillian-ajocado-junit</artifactId>
-                <version>${version.arquillian.ajocado}</version>
-                <type>pom</type>
-            </dependency>
 
+		<dependencies>
             #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
             "yes" )
             <!-- Here we get Spring dependencies certified in WFK -->
@@ -268,23 +242,6 @@
             <artifactId>commons-logging</artifactId>
         </dependency>
 
-        <!-- Testing artifacts -->
-        <!-- Arquillian -->
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Arquillian Drone using Arquillian Ajocado -->
-        <!-- Contains JUnit dependency as well -->
-        <dependency>
-            <groupId>org.jboss.arquillian.ajocado</groupId>
-            <artifactId>arquillian-ajocado-junit</artifactId>
-            <scope>test</scope>
-            <type>pom</type>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -314,20 +271,4 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <!-- An optional Arquillian testing profile that executes tests in a remote
-                JBoss AS instance -->
-            <!-- Run with: mvn clean test -Parq-jbossas-remote -->
-            <id>arq-jbossas-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                    <version>${version.arquillian.container}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>        
-    </profiles>
 </project>
