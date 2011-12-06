@@ -1,6 +1,6 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
+#set($symbol_pound='#')
+#set($symbol_dollar='$')
+#set($symbol_escape='\' )
 package ${package}.web;
 
 import ${package}.domain.User;
@@ -13,23 +13,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("say-hello")
-public class UserController {
+@RequestMapping("greet")
+public class GreetController {
 
     @Autowired
     private UserDao userDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ModelAttribute("message")
+    public
+    @ModelAttribute("message")
     String getInitialMessage() {
-        return "Enter a Valid Name";
+        return "Enter a valid name";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ModelAttribute("message")
+    public
+    @ModelAttribute("message")
     String getGreeting(@RequestParam("username") String username) {
         User user = userDao.getForUsername(username);
-        if (user !=null) {
+        if (user != null) {
             return "Hello, " + user.getFirstName() + " " + user.getLastName() + "!";
         } else {
             return "No such user exists! Use 'emuster' or 'jdoe'";

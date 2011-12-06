@@ -5,44 +5,53 @@ package ${package}.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
 
-  @Id
-  private Long id;
- 
-  @Column private String username;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  @Column String firstName;
- 
-  @Column String lastName;
+    @Column(unique = true)
+    private String username;
 
-  public String getUsername() {
-    return username;
-  }
+    @Column
+    String firstName;
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    @Column
+    String lastName;
 
-  public String getFirstName() {
-   return firstName;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public String getLastName() {
-   return lastName;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setLastName(String lastName) {
-   this.lastName = lastName;
- }
- 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 }

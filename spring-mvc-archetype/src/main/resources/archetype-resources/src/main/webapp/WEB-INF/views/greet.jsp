@@ -8,10 +8,18 @@
     <title>Hello</title>
 </head>
 <body>
-<form method="post" action="say-hello">
-    Enter username: <input type="text" id="username" name="username" value="<c:out value="${username}"/>">
-    <div id="message"><c:out value="${message}" /></div>
-    <p><input type="submit" id="submit" value="Submit"></p>
+<form method="post" action="greet">
+    <table>
+        <tr>
+           <td>Enter username: </td>
+           <td><input type="text" name="username" value="<c:out value="${username}"/>"></td>
+        </tr>
+        <tr>
+    <td colspan="2"><c:out value="${message}"/></td>
+        </tr>
+        <tr><td colspan="2">
+    <p><input type="submit" value="Submit"></td>
+        </tr>
 </form>
 
 </body>

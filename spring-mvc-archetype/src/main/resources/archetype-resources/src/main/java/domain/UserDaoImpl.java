@@ -25,8 +25,13 @@ public class UserDaoImpl implements UserDao {
             query.setParameter(1, username);
             return (User) query.getSingleResult();
         } catch (NoResultException e) {
-           return null;
+            return null;
         }
+    }
+
+    @Transactional
+    public void createUser(User user) {
+        entityManager.persist(user);
     }
 
 }
