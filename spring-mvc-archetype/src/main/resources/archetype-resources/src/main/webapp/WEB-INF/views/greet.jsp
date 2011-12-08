@@ -17,9 +17,11 @@
         <tr>
     <td colspan="2"><c:out value="${message}"/></td>
         </tr>
-        <tr><td colspan="2">
-    <p><input type="submit" value="Submit"></td>
+        <tr><td colspan="2" align="center">
+    <input type="submit" value="Greet!"></td>
         </tr>
+        <tr><td colspan="2" align="center"><a href="create">Add a new user!</a></td></tr>
+     </table>
 </form>
 
 </body>

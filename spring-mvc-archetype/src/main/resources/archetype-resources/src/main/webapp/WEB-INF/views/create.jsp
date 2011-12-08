@@ -22,12 +22,15 @@
            <td> Enter last name: </td>
             <td><input type="text" name="lastName" value=""/></td>
         </tr>
-        <tr><td colspan="2">
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Add User"></td>
+        </tr>
+        <tr><td colspan="2" align="center">
             <c:if test="${!empty message}">
             <c:out value="${message}"/>
-            </c:if></td></tr>
+            </c:if></td></tr> 
+        <tr><td colspan="2" align="center"><a href="greet">Greet a user!</a></td></tr>
     </table>
-    <p><input type="submit" value="Submit">
 </form>
 
 </body>
