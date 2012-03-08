@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>spring-3.0-bom</artifactId>
-                <version>2.0.0-redhat-1</version>
+                <version>2.0.0-redhat-5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
