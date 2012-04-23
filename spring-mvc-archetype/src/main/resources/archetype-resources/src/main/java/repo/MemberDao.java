@@ -5,7 +5,7 @@ package ${package}.repo;
 
 import java.util.List;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import ${package}.domain.Member;
 
 public interface MemberDao
 {

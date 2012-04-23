@@ -5,8 +5,8 @@ package ${package}.mvc;
 
 import java.util.List;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
-import org.jboss.as.quickstarts.kitchensink.repo.MemberDao;
+import ${package}.domain.Member;
+import ${package}.repo.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
