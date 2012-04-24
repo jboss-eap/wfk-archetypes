@@ -41,8 +41,8 @@
             <!-- Here we get Spring dependencies certified in WFK -->
             <dependency>
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
-                <artifactId>spring-3.0-bom</artifactId>
-                <version>2.0.0-redhat-5</version>
+                <artifactId>spring-3.1-bom</artifactId>
+                <version>2.0.0-redhat-6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -88,17 +88,12 @@
             <!-- Spring dependencies -->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-asm</artifactId>
-                <version>${version.spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
+                <artifactId>spring-asm</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
@@ -123,9 +118,19 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>${version.spring}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${version.spring}</version>
             </dependency>
             <dependency>
             	<groupId>org.springframework</groupId>
@@ -141,11 +146,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>${version.spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
@@ -221,15 +221,11 @@
             certified in WFK2 -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
+            <artifactId>spring-asm</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -245,11 +241,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <artifactId>spring-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <artifactId>spring-expression</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -259,6 +255,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
         	<groupId>org.springframework</groupId>
@@ -297,7 +297,7 @@
 	    </dependency>
 
 
-		<!-- Add cglib for the  -->
+		<!-- Add cglib for the MemberDaoTest -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
@@ -318,6 +318,14 @@
 	      	<groupId>org.codehaus.jackson</groupId>
 	      	<artifactId>jackson-mapper-asl</artifactId>
 	      	<version>1.6.4</version>
+	      	<scope>provided</scope>
+	    </dependency>
+
+	    <dependency>
+	      	<groupId>org.codehaus.jackson</groupId>
+	      	<artifactId>jackson-core-asl</artifactId>
+	      	<version>1.6.4</version>
+	      	<scope>provided</scope>
 	    </dependency>
 
 		<dependency>
