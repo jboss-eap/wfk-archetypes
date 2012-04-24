@@ -41,7 +41,9 @@
     <fileSet encoding="UTF-8">
       <directory>src/main/webapp</directory>
       <includes>
+      	<include>**/*.css</include>
         <include>**/*.jsp</include>
+        <include>**/*.png</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">
