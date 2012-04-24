@@ -18,7 +18,7 @@
         "yes" )
         #else
         <!-- Spring version -->
-        <version.spring>3.0.6.RELEASE</version.spring>
+        <version.spring>3.1.1.RELEASE</version.spring>
 
         <!-- Spring Third Party dependencies -->
         <version.aopalliance>1.0</version.aopalliance>
@@ -29,7 +29,7 @@
         <version.commons.logging>1.1.1</version.commons.logging>
 
         <!-- JBoss AS plugin for deployment -->
-        <version.jboss.as.maven.plugin>7.0.2.Final</version.jboss.as.maven.plugin>
+        <version.jboss.as.maven.plugin>7.1.1.Final</version.jboss.as.maven.plugin>
 
     </properties>
 
@@ -41,8 +41,8 @@
             <!-- Here we get Spring dependencies certified in WFK -->
             <dependency>
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
-                <artifactId>spring-3.0-bom</artifactId>
-                <version>2.0.0-redhat-5</version>
+                <artifactId>spring-3.1-bom</artifactId>
+                <version>2.0.0-redhat-6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -88,17 +88,12 @@
             <!-- Spring dependencies -->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-asm</artifactId>
-                <version>${version.spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
+                <artifactId>spring-asm</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
@@ -118,27 +113,39 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
+                <artifactId>spring-core</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
+                <artifactId>spring-expression</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>${version.spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${version.spring}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+            	<groupId>org.springframework</groupId>
+            	<artifactId>spring-test</artifactId>
+            	<version>${version.spring}</version>
+            	<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${version.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
@@ -153,6 +160,7 @@
                 <artifactId>aopalliance</artifactId>
                 <version>${version.aopalliance}</version>
             </dependency>
+
             #end
             <dependency>
                 <groupId>taglibs</groupId>
@@ -177,19 +185,47 @@
             <scope>provided</scope>
         </dependency>
 
+	    <!-- JSR-303 (Bean Validation) Implementation -->
+	    <!-- Provides portable constraints such as @Email -->
+	    <!-- Hibernate Validator is shipped in JBoss AS 7 -->
+	    <dependency>
+    		<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.1.0.Final</version>
+    		<scope>provided</scope>
+    		<exclusions>
+      			<exclusion>
+          			<groupId>org.slf4j</groupId>
+          			<artifactId>slf4j-api</artifactId>
+        		</exclusion>
+      		</exclusions>
+		</dependency>
+
+	    <!-- Annotation processor that raising compilation errors whenever 
+	        constraint annotations are incorrectly used. -->
+	    <dependency>
+			<groupId>org.hibernate</groupId>
+      		<artifactId>hibernate-validator-annotation-processor</artifactId>
+      		<version>4.1.0.Final</version>
+      		<scope>provided</scope>
+		</dependency>
+
+	    <dependency>
+	    	<groupId>org.hibernate</groupId>
+	    	<artifactId>hibernate-entitymanager</artifactId>
+	    	<version>4.1.0.Final</version>
+	    	<scope>provided</scope>
+	    </dependency>
+
         <!-- Import Spring dependencies, these are either from community or versions
             certified in WFK2 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
+            <artifactId>spring-asm</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -205,23 +241,33 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <artifactId>spring-expression</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <artifactId>spring-jdbc</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-test</artifactId>
+        	<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -242,6 +288,52 @@
             <artifactId>commons-logging</artifactId>
         </dependency>
 
+	    <!-- Needed for running tests (you may also use TestNG) -->
+	    <dependency>
+	    	<groupId>junit</groupId>
+	    	<artifactId>junit</artifactId>
+	    	<version>4.8.2</version>
+	    	<scope>test</scope>
+	    </dependency>
+
+
+		<!-- Add cglib for the MemberDaoTest -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Add H2 dependency for embedded testing database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.165</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Add JSON dependency, specified in jboss-deployment-structure.xml -->
+	    <dependency>
+	      	<groupId>org.codehaus.jackson</groupId>
+	      	<artifactId>jackson-mapper-asl</artifactId>
+	      	<version>1.9.3</version>
+	      	<scope>provided</scope>
+	    </dependency>
+
+	    <dependency>
+	      	<groupId>org.codehaus.jackson</groupId>
+	      	<artifactId>jackson-core-asl</artifactId>
+	      	<version>1.9.3</version>
+	      	<scope>provided</scope>
+	    </dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.4</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
     <build>

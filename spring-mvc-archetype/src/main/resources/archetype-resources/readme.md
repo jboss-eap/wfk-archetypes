@@ -9,7 +9,7 @@ see the instructions below.
 Data Source Configuration
 ======================================
 
-The example uses the predefined java:jboss/datasource/ExampleDS datasource.
+The example uses the java:jboss/datasources/KitchensinkQuickstartDS database, configured by the application.
 
 Running with JBoss AS 7
 ========================
