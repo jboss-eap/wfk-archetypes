@@ -7,8 +7,8 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
-import org.jboss.as.quickstarts.kitchensink.repo.MemberDao;
+import ${package}.domain.Member;
+import ${package}.repo.MemberDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
