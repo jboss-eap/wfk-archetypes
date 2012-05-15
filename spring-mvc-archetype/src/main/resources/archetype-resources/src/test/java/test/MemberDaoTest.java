@@ -58,8 +58,11 @@ public class MemberDaoTest
         member.setPhoneNumber("2125552121");
 
         memberDao.register(member);
+        Long id = member.getId();
+        Assert.assertNotNull(id);
+        
         Assert.assertEquals(2, memberDao.findAllOrderedByName().size());
-        Member newMember = memberDao.findById(1l);
+        Member newMember = memberDao.findById(id);
 
         Assert.assertEquals("Jane Doe", newMember.getName());
         Assert.assertEquals("jane.doe@mailinator.com", newMember.getEmail());
