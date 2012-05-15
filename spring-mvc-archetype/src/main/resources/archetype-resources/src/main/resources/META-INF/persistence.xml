@@ -9,11 +9,11 @@
    <persistence-unit name="primary">
       <!-- If you are running in a production environment, add a managed 
          data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/kitchensink-quickstart-ds.xml, you
-         can find it in the source at src/main/webapp/WEB-INF/kitchensink-quickstart-ds.xml -->
-      <jta-data-source>java:jboss/datasources/KitchensinkQuickstartDS</jta-data-source>
+      <!-- The datasource is deployed as WEB-INF/spring-quickstart-ds.xml, you
+         can find it in the source at src/main/webapp/WEB-INF/spring-quickstart-ds.xml -->
+      <jta-data-source>java:jboss/datasources/SpringQuickstartDS</jta-data-source>
       <properties>
-		 <property name="jboss.entity.manager.factory.jndi.name" value="java:jboss/kitchensink/persistence" />
+		 <property name="jboss.entity.manager.factory.jndi.name" value="java:jboss/spring-quickstart/persistence" />
          <!-- Properties for Hibernate -->
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="false" />

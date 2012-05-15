@@ -15,14 +15,14 @@
 		   http://www.springframework.org/schema/jee/spring-jee.xsd">
 
 	<!-- JDNI name for EntityManagerFactory is defined in src/main/resources/META-INF/persistence.xml -->
-    <jee:jndi-lookup jndi-name="java:jboss/kitchensink/persistence" id="entityManagerFactory"
+    <jee:jndi-lookup jndi-name="java:jboss/spring-quickstart/persistence" id="entityManagerFactory"
                      expected-type="javax.persistence.EntityManagerFactory" />
 
 	<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
    		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
                      
-	<jee:jndi-lookup jndi-name="java:jboss/datasources/KitchensinkQuickstartDS" id="dataSource" expected-type="javax.sql.DataSource"/>
+	<jee:jndi-lookup jndi-name="java:jboss/datasources/SpringQuickstartDS" id="dataSource" expected-type="javax.sql.DataSource"/>
 
     <tx:jta-transaction-manager />
 

@@ -1,8 +1,7 @@
 Getting Started with Spring MVC on JBoss AS 7
 =============================================+
 
-This as an example application for JBoss AS 7.  It can be deployed like any other
-web application, by building the .war, copying it into the server's deployments folder, and starting the server.
+This is a Spring MVC example application for JBoss AS 7.  It can be deployed like any other web application, by building the .war, copying it into the server's deployments folder, and starting the server.
 Alternatively, it can be built and run using Maven Archetypes, to do so,
 see the instructions below.
 

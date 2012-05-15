@@ -50,7 +50,6 @@
 						<tr>
 							<td>
 								<input type="submit" value="Register" class="register"/>
-								<!-- What about the error messages - <h:messages>? -->
 							</td>
 						</tr>
 					</table>
