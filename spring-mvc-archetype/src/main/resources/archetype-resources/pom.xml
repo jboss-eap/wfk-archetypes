@@ -4,7 +4,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+        
     <modelVersion>4.0.0</modelVersion>
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
@@ -61,7 +61,7 @@
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-web-6.0</artifactId>
-                <version>3.0.0.Beta1-redhat-1</version>
+                <version>3.0.0.Final-redhat-1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -343,7 +343,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>2.4</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -358,9 +358,32 @@
             <!-- Surefire plugin before 2.9 version is buggy -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.9</version>
+                <version>2.12</version>
             </plugin>
         </plugins>
     </build>
-
+    <profiles>
+        <profile>
+            <!-- When built in OpenShift the 'openshift' profile will be 
+                used when invoking mvn. -->
+            <!-- Use this profile for any OpenShift specific customization 
+                your app will need. -->
+            <!-- By default that is to put the resulting archive into the 
+                'deployments' folder. -->
+            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <outputDirectory>deployments</outputDirectory>
+                            <warName>ROOT</warName>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
