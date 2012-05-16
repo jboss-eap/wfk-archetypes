@@ -42,9 +42,9 @@
             <dependency>
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>spring-3.1-bom</artifactId>
-                <version>2.0.0-redhat-6</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <version>${springBomVersion}</version>
+				<type>pom</type>
+				<scope>import</scope>
             </dependency>
             <!-- Define the versions of JBoss EAP components we want to use -->
             <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any

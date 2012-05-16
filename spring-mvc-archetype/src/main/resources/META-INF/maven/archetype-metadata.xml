@@ -6,6 +6,9 @@
     <requiredProperty key="enterprise">
       <defaultValue>false</defaultValue>
     </requiredProperty>
+    <requiredProperty key="springBomVersion">
+      <defaultValue>2.0.0-beta-5</defaultValue>
+    </requiredProperty>
   </requiredProperties>
   <fileSets>
     <fileSet filtered="true" packaged="false">
