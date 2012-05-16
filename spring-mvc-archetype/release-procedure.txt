@@ -8,6 +8,11 @@ Note you will want to this in parallel with the war archetype!
 4. Checkout the tag
 5. Publish it 
     mvn clean deploy -DaltDeploymentRepository=jboss-releases-repository::default::https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/
+
+    If integration tests are failing for -Denterprise, you also have to set following properties:
+    -Darchetype.test.settingsFile=/path/to/settings.xml
+    -Darchetype.test.localRepositoryPath=/path/to/local/repository
+    
 6. Log into nexus, verify the release, and promote it
 
 Now, regenerate the quickstart and commit any changes
