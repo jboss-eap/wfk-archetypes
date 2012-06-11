@@ -8,6 +8,7 @@ This is your project! It is a sample, deployable Maven 3 project to help you get
 
 This project is setup to allow you to create a compliant Spring 3.1 application using Spring MVC, JPA 2.0 and Bean Validation 1.0. It includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java. 
 
+The example uses the `java:jboss/datasources/SpringQuickstartDS` database, configured and deployed by the application.
 
 System requirements
 -------------------
