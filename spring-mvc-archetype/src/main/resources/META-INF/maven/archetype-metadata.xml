@@ -7,7 +7,7 @@
       <defaultValue>false</defaultValue>
     </requiredProperty>
     <requiredProperty key="springBomVersion">
-      <defaultValue>2.0.0-beta-5</defaultValue>
+      <defaultValue>2.0.0-beta-6</defaultValue>
     </requiredProperty>
   </requiredProperties>
   <fileSets>
