@@ -17,13 +17,13 @@
         #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
         "yes" )
         <!-- Spring version -->
-        <version.spring>3.1.1.RELEASE</version.spring>
+        <version.spring>3.2.2.RELEASE</version.spring>
 
         <!-- Spring Third Party dependencies -->
         <version.aopalliance>1.0</version.aopalliance>
         #else
         <!-- Spring version -->
-        <version.spring>3.1.1.RELEASE</version.spring>
+        <version.spring>3.2.2.RELEASE</version.spring>
 
         <!-- Spring Third Party dependencies -->
         <version.aopalliance>1.0</version.aopalliance>
@@ -58,7 +58,7 @@
 
             <dependency>
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
-                <artifactId>spring-3.1-bom</artifactId>
+                <artifactId>spring-3.2-bom</artifactId>
                 <type>pom</type>
                 <version>2.2.0-redhat-1</version>
                 <scope>import</scope>
@@ -67,7 +67,7 @@
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>1.0.2.Final-redhat-1</version>
+                <version>1.0.4.Final-redhat-wfk-1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -96,11 +96,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <version>${version.spring}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-asm</artifactId>
                 <version>${version.spring}</version>
             </dependency>
             <dependency>
@@ -227,10 +222,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
