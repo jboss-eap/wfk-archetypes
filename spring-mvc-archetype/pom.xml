@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.spring.archetypes</groupId>
-    <artifactId>spring-mvc-webapp</artifactId>
-    <version>1.0.0.CR8</version>
+    <artifactId>jboss-spring-mvc-archetype</artifactId>
+    <version>1.0.0.Final</version>
     <packaging>maven-archetype</packaging>
 
     <name>JBoss AS7 - Spring MVC Application</name>
