@@ -17,18 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class MemberDaoImpl implements MemberDao
-{
+public class MemberDaoImpl implements MemberDao {
     @Autowired
     private EntityManager em;
 
-    public Member findById(Long id)
-    {
+    public Member findById(Long id) {
         return em.find(Member.class, id);
     }
 
-    public Member findByEmail(String email)
-    {
+    public Member findByEmail(String email) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
         Root<Member> member = criteria.from(Member.class);
@@ -42,8 +39,7 @@ public class MemberDaoImpl implements MemberDao
         return em.createQuery(criteria).getSingleResult();
     }
 
-    public List<Member> findAllOrderedByName()
-    {
+    public List<Member> findAllOrderedByName() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
         Root<Member> member = criteria.from(Member.class);
@@ -57,8 +53,7 @@ public class MemberDaoImpl implements MemberDao
         return em.createQuery(criteria).getResultList();
     }
 
-    public void register(Member member)
-    {
+    public void register(Member member) {
         em.persist(member);
         return;
     }

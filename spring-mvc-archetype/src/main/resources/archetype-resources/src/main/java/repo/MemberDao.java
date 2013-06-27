@@ -7,8 +7,7 @@ import java.util.List;
 
 import ${package}.domain.Member;
 
-public interface MemberDao
-{
+public interface MemberDao {
     public Member findById(Long id);
 
     public Member findByEmail(String email);
