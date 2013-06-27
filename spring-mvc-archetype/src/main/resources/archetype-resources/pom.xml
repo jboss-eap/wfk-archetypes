@@ -16,14 +16,11 @@
     <properties>
         #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
         "yes" )
-        <!-- Spring version -->
-        <version.spring>3.2.2.RELEASE</version.spring>
-
         <!-- Spring Third Party dependencies -->
         <version.aopalliance>1.0</version.aopalliance>
         #else
         <!-- Spring version -->
-        <version.jboss.bom>1.0.5.Final</version.jboss.bom>
+        <version.jboss.bom>1.0.6.Final</version.jboss.bom>
         #end
 
         <!-- Third Party dependencies -->
@@ -57,17 +54,23 @@
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>spring-3.2-bom</artifactId>
                 <type>pom</type>
-                <version>2.2.0-redhat-1</version>
+                <version>2.3.0-redhat-1</version>
                 <scope>import</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>1.0.4.Final-redhat-wfk-1</version>
+                <version>1.0.4.Final-redhat-wfk-2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+	    <dependency>
+            	<groupId>dom4j</groupId>
+            	<artifactId>dom4j</artifactId>
+            	<version>1.6.1-redhat-5</version>
+	    </dependency>
 
             #else
             <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
@@ -141,7 +144,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>	
 
         <!-- Annotation processor that raising compilation errors whenever constraint
             annotations are incorrectly used. -->

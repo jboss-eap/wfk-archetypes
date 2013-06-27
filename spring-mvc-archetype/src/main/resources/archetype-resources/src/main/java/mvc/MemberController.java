@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value="/")
-public class MemberController
-{
+public class MemberController {
     @Autowired
     private MemberDao memberDao;
 
@@ -31,8 +30,7 @@ public class MemberController
     }
 
     @RequestMapping(method=RequestMethod.POST)
-    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model)
-    {
+    public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             memberDao.register(newMember);
             return "redirect:/";
