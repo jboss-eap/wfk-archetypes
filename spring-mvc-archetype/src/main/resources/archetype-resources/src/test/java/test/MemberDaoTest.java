@@ -22,14 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 "classpath:/META-INF/spring/applicationContext.xml"})
 @Transactional
 @TransactionConfiguration(defaultRollback=true)
-public class MemberDaoTest
-{
+public class MemberDaoTest {
     @Autowired
     private MemberDao memberDao;
 
     @Test
-    public void testFindById()
-    {
+    public void testFindById() {
         Member member = memberDao.findById(0l);
 
         Assert.assertEquals("John Smith", member.getName());
@@ -39,8 +37,7 @@ public class MemberDaoTest
     }
 
     @Test
-    public void testFindByEmail()
-    {
+    public void testFindByEmail() {
         Member member = memberDao.findByEmail("john.smith@mailinator.com");
 
         Assert.assertEquals("John Smith", member.getName());
@@ -50,8 +47,7 @@ public class MemberDaoTest
     }
 
     @Test
-    public void testRegister()
-    {
+    public void testRegister() {
         Member member = new Member();
         member.setEmail("jane.doe@mailinator.com");
         member.setName("Jane Doe");
@@ -71,8 +67,7 @@ public class MemberDaoTest
     }
 
     @Test
-    public void testFindAllOrderedByName()
-    {
+    public void testFindAllOrderedByName() {
         Member member = new Member();
         member.setEmail("jane.doe@mailinator.com");
         member.setName("Jane Doe");
