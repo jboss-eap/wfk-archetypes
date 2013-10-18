@@ -7,8 +7,8 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import ${package}.domain.Member;
-import ${package}.repo.MemberDao;
+import ${package}.model.Member;
+import ${package}.data.MemberDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:test-context.xml",
-"classpath:/META-INF/spring/applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+        "classpath:/META-INF/spring/applicationContext.xml"})
 @Transactional
-@TransactionConfiguration(defaultRollback=true)
+@TransactionConfiguration(defaultRollback = true)
 public class MemberDaoTest {
     @Autowired
     private MemberDao memberDao;
@@ -56,7 +56,7 @@ public class MemberDaoTest {
         memberDao.register(member);
         Long id = member.getId();
         Assert.assertNotNull(id);
-        
+
         Assert.assertEquals(2, memberDao.findAllOrderedByName().size());
         Member newMember = memberDao.findById(id);
 

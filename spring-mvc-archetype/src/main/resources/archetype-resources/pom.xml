@@ -12,28 +12,48 @@
     <version>${version}</version>
 
     <name>Getting Started with Spring on JBoss</name>
-
+    <description>Getting Started with Spring on JBoss</description>
+    
     <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+            resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+
         #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
         "yes" )
-        <!-- Spring Third Party dependencies -->
-        <version.aopalliance>1.0</version.aopalliance>
+        <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
+        <version.jboss.bom.wfk>2.4.0-redhat-1</version.jboss.bom.wfk>
+        <version.jboss.bom.eap>1.0.4.Final-redhat-9</version.jboss.bom.eap>
+        <version.dom4j>1.6.1-redhat-5</version.dom4j>
         #else
-        <!-- Spring version -->
-        <version.jboss.bom>1.0.6.Final</version.jboss.bom>
+        <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
+        <version.jboss.bom.wfk>2.4.0-build-5</version.jboss.bom.wfk>
+        <version.jboss.bom.eap>1.0.7.Final</version.jboss.bom.eap>
         #end
 
-        <!-- Third Party dependencies -->
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <version.maven.surefire>2.13</version.maven.surefire>
+        <version.maven.war>2.3</version.maven.war>
+        <version.maven.compiler>3.0</version.maven.compiler>
+
+        <!-- Third Party Spring dependencies -->
         <version.standard.taglibs>1.1.2</version.standard.taglibs>
         <version.commons.logging>1.1.1</version.commons.logging>
-
-        <!-- JBoss AS plugin for deployment -->
-        <version.jboss.as.maven.plugin>7.3.Final</version.jboss.as.maven.plugin>
-
+        <version.cglib>2.2</version.cglib>
+        <version.h2db>1.3.165</version.h2db>
+        <version.jackson>1.9.3</version.jackson>
+        <version.slf4j>1.7.5</version.slf4j>
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
             #if ($enterprise == "true" || $enterprise == "y" || $enterprise ==
             "yes" )
@@ -45,8 +65,7 @@
                 of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
                 of artifacts. We use this here so that we always get the correct versions
                 of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this
-                as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version
-                3.0.0.Final-redhat-1 which is the latest release of the stack. You can actually
+                as the JBoss stack of the Java EE Web Profile 6 APIs). You can actually
                 use this stack with any version of JBoss AS that implements Java EE 6, not
                 just JBoss AS 7! -->
 
@@ -54,23 +73,15 @@
                 <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>spring-3.2-bom</artifactId>
                 <type>pom</type>
-                <version>2.4.0-redhat-1</version>
+                <version>${version.jboss.bom.wfk}</version>
                 <scope>import</scope>
             </dependency>
 
             <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>1.0.4.Final-redhat-9</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-	    <dependency>
             	<groupId>dom4j</groupId>
             	<artifactId>dom4j</artifactId>
-            	<version>1.6.1-redhat-5</version>
-	    </dependency>
+            	<version>${version.dom4j}</version>
+            </dependency>
 
             #else
             <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
@@ -80,26 +91,33 @@
                 of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
                 of artifacts. We use this here so that we always get the correct versions
                 of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this
-                as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version
-                3.0.0.Final which is the latest release of the stack. You can actually use
+                as the JBoss stack of the Java EE Web Profile 6 APIs). You can actually use
                 this stack with any version of JBoss AS that implements Java EE 6, not just
                 JBoss AS 7! -->
             <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>${version.jboss.bom}</version>
+                <groupId>org.jboss.bom.wfk</groupId>
+                <artifactId>jboss-javaee-6.0-with-spring</artifactId>
+                <version>${version.jboss.bom.wfk}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             
-             <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-spring</artifactId>
-                <version>${version.jboss.bom}</version>
+            <dependency>
+                <groupId>org.jboss.bom.wfk</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${version.jboss.bom.wfk}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             #end
+
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom.eap}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>taglibs</groupId>
@@ -112,11 +130,41 @@
                 <artifactId>commons-logging</artifactId>
                 <version>${version.commons.logging}</version>
             </dependency>
+            
+            <!-- Add cglib for the MemberDaoTest -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>${version.cglib}</version>
+            </dependency>
+
+            <!-- Add H2 dependency for embedded testing database -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${version.h2db}</version>
+            </dependency>
+
+            <!-- Add JSON dependency, specified in jboss-deployment-structure.xml -->
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${version.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${version.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-
         <!-- Import the JPA API using the provided scope It is included in JBoss
             AS 7 / EAP 6 -->
         <dependency>
@@ -144,7 +192,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <scope>provided</scope>
-        </dependency>	
+        </dependency>
 
         <!-- Annotation processor that raising compilation errors whenever constraint
             annotations are incorrectly used. -->
@@ -234,7 +282,6 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
-            <version>2.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -242,7 +289,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.3.165</version>
             <scope>provided</scope>
         </dependency>
 
@@ -250,21 +296,18 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.3</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.3</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.6.4</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -278,20 +321,20 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+	                <source>${maven.compiler.source}</source>
+	                <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
             <!-- Deployent on AS from console -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${version.jboss.as.maven.plugin}</version>
+                <version>${version.jboss.maven.plugin}</version>
             </plugin>
             <!-- Surefire plugin before 2.9 version is buggy -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
+                <version>${version.maven.surefire}</version>
             </plugin>
         </plugins>
     </build>
@@ -309,7 +352,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>2.2</version>
+                        <version>${version.maven.war}</version>
                         <configuration>
                             <outputDirectory>deployments</outputDirectory>
                             <warName>ROOT</warName>
