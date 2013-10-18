@@ -3,6 +3,12 @@
 Note you will want to this in parallel with the war archetype!
 
 1. Edit pom.xml and set release version
+    a. to test locally
+        1. mvn clean install
+        2. create a new "test" dir and go there
+        3. mvn archetype:generate -DarchetypeCatalog=local -DarchetypeGroupId=org.jboss.spring.archetypes -DarchetypeArtifactId=jboss-spring-mvc-archetype -DarchetypeVersion=1.0.1-Final -DgroupId=archetype.test -DartifactId=spring.test -DinteractiveMode=false
+            a. make sure you set the version to whatever you are currently useing. 
+        4. This should create a project based on the archetype in the current dir.
 2. Tag this
 3. Edit pom.xml and set the development version
 4. Checkout the tag
