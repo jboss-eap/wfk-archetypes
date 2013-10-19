@@ -5,7 +5,7 @@
 
     <groupId>org.jboss.spring.archetypes</groupId>
     <artifactId>jboss-spring-mvc-archetype</artifactId>
-    <version>1.0.1.Final</version>
+    <version>1.0.2.Final</version>
     <packaging>maven-archetype</packaging>
 
     <name>JBoss AS7 - Spring MVC Application</name>
@@ -89,12 +89,33 @@
     </properties>
    
     <profiles>
-     <!-- Build with -Penterprise to test against an EAP / WFK repository -->
-      <profile>
-        <id>enterprise</id>
-        <properties>
-          <enterprise.available>true</enterprise.available>
-        </properties>
-      </profile>
+        <!-- Build with -Penterprise to test against an EAP / WFK repository -->
+        <profile>
+            <id>enterprise</id>
+            <properties>
+                <enterprise.available>true</enterprise.available>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
