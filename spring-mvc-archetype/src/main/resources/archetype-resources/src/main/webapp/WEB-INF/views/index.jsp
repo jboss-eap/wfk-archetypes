@@ -1,3 +1,19 @@
+<%--
+    JBoss, Home of Professional Open Source
+    Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
+    contributors by the @authors tag. See the copyright.txt in the
+    distribution for a full listing of individual contributors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -12,16 +28,13 @@
 <body>
 <div id="container">
     <div class="dualbrand">
-        <img src="<c:url value="/static/resources/gfx/dualbrand_logo.png"/>"/>
+        <img src="<c:url value="/static/resources/gfx/rhjb_eap_logo.png"/>"/>
     </div>
     <div id="content">
         <h1>Welcome to JBoss!</h1>
 
         <div>
             <p>You have successfully deployed a basic Spring MVC web application.</p>
-
-            <h3>Your application can run on:</h3>
-            <img src="<c:url value="/static/resources/gfx/dualbrand_as7eap.png"/>"/>
         </div>
 
         <form:form commandName="newMember" id="reg">
@@ -100,16 +113,8 @@
     <div id="aside">
         <p>Learn more about JBoss Enterprise Application Platform 6.</p>
         <ul>
-            <li><a
-                    href="http://red.ht/jbeap-6-docs">Documentation</a></li>
+            <li><a href="https://access.redhat.com/site/documentation/JBoss_Enterprise_Application_Platform/">Documentation</a></li>
             <li><a href="http://red.ht/jbeap-6">Product Information</a></li>
-        </ul>
-        <p>Learn more about JBoss AS 7.</p>
-        <ul>
-            <li><a
-                    href="https://docs.jboss.org/author/display/AS7/Getting+Started+Developing+Applications+Guide">Getting
-                Started Developing Applications Guide</a></li>
-            <li><a href="http://jboss.org/jbossas">Community Project Information</a></li>
         </ul>
     </div>
     <div id="footer">

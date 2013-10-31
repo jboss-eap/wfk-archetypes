@@ -1,3 +1,19 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
+ * contributors by the @authors tag. See the copyright.txt in the
+ * distribution for a full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -11,6 +27,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import ${package}.model.Member;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +43,8 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     public Member findByEmail(String email) {
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
         Root<Member> member = criteria.from(Member.class);
 
         /*
@@ -35,7 +52,7 @@ public class MemberDaoImpl implements MemberDao {
          * feature in JPA 2.0 criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
          */
 
-        criteria.select(member).where(builder.equal(member.get("email"), email));
+        criteria.select(member).where(cb.equal(member.get("email"), email));
         return em.createQuery(criteria).getSingleResult();
     }
 

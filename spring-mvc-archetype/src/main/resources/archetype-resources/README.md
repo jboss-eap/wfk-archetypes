@@ -1,12 +1,15 @@
 ${artifactId}
-========================
+==============================================================
 
 What is it?
 -----------
 
-This is your project! It is a sample, deployable Maven 3 project to help you get your foot in the door developing with Spring on JBoss Enterprise Application Platform 6 or JBoss AS 7.1. 
 
-This project is setup to allow you to create a compliant Java EE 6 application using JSP, JPA 2.0 and Spring 3.2. It includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java. 
+This is your project! It is a sample, deployable Maven 3 project to help you get your foot in the door developing with 
+Java EE 6 and Spring on Red Hat JBoss Enterprise Application Platform 6.1 or later.
+
+This project is setup to allow you to create a compliant Java EE 6 application using JSP, JPA 2.0 and Spring 3.2. It 
+includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java:
 
 The example uses the `java:jboss/datasources/SpringQuickstartDS` database, configured and deployed by the application.
 
@@ -18,26 +21,46 @@ The example uses the `java:jboss/datasources/SpringQuickstartDS` database, confi
 
 * The datasource and entitymanager are retrieved via JNDI.
 
-System requirements
+System Requirements
 -------------------
 
-All you need to build this project is Java 6.0 (Java SDK 1.6) or better, Maven 3.0 or better.
+The application this project produces is designed to be run on Red Hat JBoss Enterprise Application Platform (EAP) 6.1 or 
+later with the Red Hat JBoss Web Framework Kit (WFK) 2.4.
 
-The application this project produces is designed to be run on JBoss Enterprise Application Platform 6 or JBoss AS 7.1. 
+To run the quickstart with the provided build script, you need the following:
 
-Configure Maven and Start JBoss Enterprise Application Platform 6 or JBoss AS 7.1
+1. Java 1.6, to run JBoss and Maven. You can choose from the following:
+    * OpenJDK
+    * Oracle Java SE
+    * Oracle JRockit
+
+2. Maven 3.0.0 or later, to build and deploy the examples
+    * If you have not yet installed Maven, see the [Maven Getting Started Guide](http://maven.apache.org/guides/getting-started/index.html) for details.
+    * If you have installed Maven, you can check the version by typing the following in a command line:
+
+            mvn --version 
+
+3. The JBoss EAP distribution ZIP.
+    * For information on how to install and run JBoss, refer to the product documentation.
+
+Configure Maven
+---------------
+
+If you have not yet done so, you must [Configure Maven](../README.md#configure-maven) before testing the quickstarts.
+
+
+Start the JBoss Server
 -------------------------
 
-1. If you have not yet done so, you must Configure Maven before testing the quickstarts.
-2. Start the JBoss Server
-3. Open a command line and navigate to the root of the JBoss server directory.
-4. The following shows the command line to start the server with the web profile:
+1. Open a command line and navigate to the root of the JBoss server directory.
+2. The following shows the command line to start the server:
 
         For Linux:   JBOSS_HOME/bin/standalone.sh
         For Windows: JBOSS_HOME\bin\standalone.bat
 
-Build and Deploy the Application
---------------------------------
+ 
+Build and Deploy the Quickstart
+-------------------------
 
 _NOTE: The following build command assumes you have configured your Maven user settings. If you have not, you must include Maven setting arguments on the command line. See [Build and Deploy the Quickstarts](../README.md#build-and-deploy-the-quickstarts) for complete instructions and additional options._
 
@@ -45,7 +68,7 @@ _NOTE: The following build command assumes you have configured your Maven user s
 2. Open a command line and navigate to the root directory of this quickstart.
 3. Type this command to build and deploy the archive:
 
-        mvn clean package jboss-as:deploy
+        mvn clean install jboss-as:deploy
 
 4. This will deploy `target/${artifactId}.war` to the running instance of the server.
 
@@ -66,11 +89,33 @@ Undeploy the Archive
         mvn jboss-as:undeploy
 
 
-Debug the Application
-------------------------------------
+Run the Arquillian Tests 
+-------------------------
 
-If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following commands to pull them into your local repository. The IDE should then detect them.
+This quickstart provides Arquillian tests. By default, these tests are configured to be skipped as Arquillian tests require the use of a container. 
+
+_NOTE: The following commands assume you have configured your Maven user settings. If you have not, you must include Maven setting arguments on the command line. See [Run the Arquillian Tests](../README.md#run-the-arquillian-tests) for complete instructions and additional options._
+
+1. Make sure you have started the JBoss Server as described above.
+2. Open a command line and navigate to the root directory of this quickstart.
+3. Type the following command to run the test goal with the following profile activated:
+
+        mvn clean test -Parq-jbossas-remote 
+
+
+
+Run the Quickstart in JBoss Developer Studio or Eclipse
+-------------------------------------
+
+You can also start the server and deploy the quickstart from Eclipse using JBoss tools. For more information, see 
+[Use JBoss Developer Studio or Eclipse to Run the Quickstart](../README.md#use-jboss-developer-studio-or-eclipse-to-run-the-quickstarts)
+
+
+Debug the Application
+---------------------
+
+If you want to debug the source code or look at the Javadocs of any library in the project, run either of the following 
+commands to pull them into your local repository. The IDE should then detect them.
 
         mvn dependency:sources
         mvn dependency:resolve -Dclassifier=javadoc
-
