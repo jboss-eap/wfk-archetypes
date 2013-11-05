@@ -5,7 +5,7 @@
 
     <groupId>org.jboss.spring.archetypes</groupId>
     <artifactId>jboss-spring-mvc-archetype</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.3.Final</version>
     <packaging>maven-archetype</packaging>
 
     <name>JBoss AS7 - Spring MVC Application</name>
